@@ -11,7 +11,7 @@
     "upsideDown": false
   },
   "packageName": "org.cocos2d.helloworld",
-  "startScene": "c766cf5d-82bc-4356-9195-4789bb7624d5",
+  "startScene": "a4aeddea-8065-452e-9fb2-bcad154e476b",
   "title": "hello_world",
-  "webOrientation": "auto"
+  "webOrientation": "portrait"
 }
