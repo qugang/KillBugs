@@ -1,0 +1,7 @@
+{
+  "ver": "1.0.0",
+  "uuid": "a2b15e42-e885-4fac-95d2-e03152a3c177",
+  "atlasJson": "{\"SubTexture\":[{\"y\":1,\"frameWidth\":100,\"x\":1,\"frameHeight\":100,\"width\":93,\"frameY\":-1,\"height\":99,\"name\":\"B_14\",\"frameX\":-3}],\"name\":\"animation1\",\"imagePath\":\"texture.png\"}",
+  "texture": "37ed6d2f-b247-4d81-8f82-b3a35c9dac31",
+  "subMetas": {}
+}
