@@ -16,9 +16,41 @@ cc.Class({
             default: null,
             type: cc.SpriteFrame,
         },
-        shuidiMusic:{
-            default: null,
-            type: cc.AudioClip,
+        shuidiMusic: {
+            url: cc.AudioClip,
+            default: null
+        },
+        doMusic:{
+            url: cc.AudioClip,
+            default:null
+        },
+        reMusic:{
+            url: cc.AudioClip,
+            default:null
+        },
+        miMusic:{
+            url: cc.AudioClip,
+            default:null
+        },
+        faMusic:{
+            url: cc.AudioClip,
+            default:null
+        },
+        soMusic:{
+            url: cc.AudioClip,
+            default:null
+        },
+        laMusic:{
+            url: cc.AudioClip,
+            default:null
+        },
+        xiMusic:{
+            url: cc.AudioClip,
+            default:null
+        },
+        bigShuidiMusic:{
+            url: cc.AudioClip,
+            default: null
         },
         bigShuidi:{
             default: null,
@@ -34,6 +66,10 @@ cc.Class({
         },
         shuidiBao:{
             default: null,
+            type:cc.Node
+        },
+        clearShuidi:{
+            default:null,
             type:cc.Node
         },
         niver1:{
@@ -80,6 +116,26 @@ cc.Class({
             default:null,
             type:cc.Node
         },
+        fire1:{
+            default:null,
+            type:cc.Node
+        },
+        fire2:{
+            default:null,
+            type:cc.Node
+        },
+        bg1Node:{
+            default:null,
+            type:cc.Node
+        },
+        bg2Node:{
+            default:null,
+            type:cc.Node
+        },
+        bg3Node:{
+            default:null,
+            type:cc.Node
+        },
         bigNumberToSpawn:0,
         numberToSpawn:0,
         spawnInterval:0
@@ -93,7 +149,7 @@ cc.Class({
         
         var node = new cc.Node('shuidi ' + this.spawnCount + this.bigSpawnCount);
         var sp = node.addComponent(cc.Sprite);
-        if(cc.random0To1() >= 0.5 && this.bigSpawnCount < this.bigNumberToSpawn)
+        if(cc.random0To1() >= 0.5 && this.bigSpawnCount < this.bigNumberToSpawn && this.spawnCount >= this.needCount / 2 )
         {
             this.bigSpawnCount++;
             sp.spriteFrame =  this.bigShuidi;
@@ -112,14 +168,12 @@ cc.Class({
        
         this.nodeArray.push(node);
         
-        var move = cc.moveTo(5, node.position.x, 0);
+        var move = cc.moveTo(this.moveNumber, node.position.x, 0);
         node.runAction(cc.sequence(move,cc.callFunc(function(){
             this.destroyCount++;
             this.ctrlNiver();
             node.destroy();
-            this.windonsCount--;
         }.bind(this))));
-        this.windonsCount++;
     },
     
     // use this for initialization
@@ -127,29 +181,62 @@ cc.Class({
         
         var chapterData = require("ChapterData");
         
+        cc.audioEngine.preload(this.doMusic);
+        cc.audioEngine.preload(this.reMusic);
+        cc.audioEngine.preload(this.miMusic);
+        cc.audioEngine.preload(this.faMusic);
+        cc.audioEngine.preload(this.soMusic);
+        cc.audioEngine.preload(this.laMusic);
+        cc.audioEngine.preload(this.xiMusic);
+        
         this.bigNumberToSpawn =  chapterData.currentChapter.bigNumberToSpawn;
         this.numberToSpawn = chapterData.currentChapter.numberToSpawn;
         this.spawnInterval = chapterData.currentChapter.spawnInterval;
         this.niverCount = chapterData.currentChapter.niverCount;
         this.bg1Image = chapterData.currentChapter.bg1Image;
         this.bg2Image = chapterData.currentChapter.bg2Image;
+        this.bg3Image = chapterData.currentChapter.bg3Image;
         this.bgMusic = chapterData.currentChapter.bgMusic;
         this.currentChapterNumber = chapterData.currentChapter.chapterNumber;
+        this.currentYear = chapterData.currentYear;
+        this.needCount = chapterData.currentChapter.needCount;
+        this.moveNumber = chapterData.currentChapter.moveNumber;
         
         this.randomRange = cc.p(650,1334);
         this.spawnCount = 0;
         this.bigSpawnCount = 0;
         this.destroyCount = 0;
-        this.windonsCount =0;
         this.clearCount = 0;
         this.isWin = false;
         this.nodeArray = new Array();
         this.nengliangtiaoCtrl.progress = 0;
+        this.fire1.position = cc.p(-1000,-1000);
+        this.fire1.position = cc.p(-1000,-1000);
         this.initNiver();
+        
+        cc.loader.loadRes(this.bg1Image,cc.SpriteFrame,function(err,spriteFrame){
+                cc.log("err" + err);
+                this.bg1Node.getComponent(cc.Sprite).spriteFrame = spriteFrame
+        }.bind(this));
+        cc.loader.loadRes(this.bg2Image,cc.SpriteFrame,function(err,spriteFrame){
+                cc.log("err" + err);
+                this.bg2Node.getComponent(cc.Sprite).spriteFrame = spriteFrame
+        }.bind(this));
+        cc.loader.loadRes(this.bg3Image,cc.SpriteFrame,function(err,spriteFrame){
+                cc.log("err" + err);
+                this.bg3Node.getComponent(cc.Sprite).spriteFrame = spriteFrame
+        }.bind(this));
+        
+        
         this.schedule(this.addSpawn,this.spawnInterval);
         this.nengliang.on(cc.Node.EventType.TOUCH_START,function(event){
             if (this.nengliangtiaoCtrl.progress >=0.9)
             {
+                var animationNode = cc.instantiate(this.clearShuidi);
+                animationNode.parent = this.node;
+                animationNode.position = event.getLocation();
+                var value = animationNode.getComponent(dragonBones.ArmatureDisplay);
+                value.armature().animation.play("newAnimation",1);
                 for(var i in this.nodeArray)
                 {
                     if(cc.isValid(this.nodeArray[i]))
@@ -157,7 +244,6 @@ cc.Class({
                         this.nodeArray[i].stopAllActions();
                         this.playBoom(this.nodeArray[i]);
                         this.nodeArray[i].destroy();
-                        this.windonsCount--;
                     }
                 }
                 this.nengliangtiaoCtrl.progress = 0;
@@ -173,7 +259,6 @@ cc.Class({
         this.unschedule(this.addSpawn);
     },
     bigShuidiToSmall: function(position){
-        cc.log("position" +position);
         if(position.x >= 200 && position.x <= 450)
         {
             this.addSmallShuidi(position.x,position.y + 120);
@@ -181,21 +266,18 @@ cc.Class({
             this.addSmallShuidi(position.x,position.y - 120);
             this.addSmallShuidi(position.x + 120,position.y);
             this.addSmallShuidi(position.x,position.y);
-            this.windonsCount+=5;
         }
         else if(position.x <200)
         {
             this.addSmallShuidi(position.x,position.y);
             this.addSmallShuidi(position.x,position.y + 120);
             this.addSmallShuidi(position.x + 120,position.y);
-            this.windonsCount+=3;
         }
         else if(position.y > 450)
         {
             this.addSmallShuidi(position.x,position.y);
             this.addSmallShuidi(position.x,position.y + 120);
             this.addSmallShuidi(position.x - 120,position.y);
-            this.windonsCount+=3;
         }
         
     },
@@ -208,12 +290,11 @@ cc.Class({
         node.setAnchorPoint(0, 0);
         this.addBoom(node);
         
-        var move = cc.moveTo(5, node.position.x, 0);
+        var move = cc.moveTo(this.moveNumber, node.position.x, 0);
         node.runAction(cc.sequence(move,cc.callFunc(function(){
             this.destroyCount++;
             this.ctrlNiver();
             node.destroy();
-            this.windonsCount--;
         }.bind(this))));
         this.nodeArray.push(node);
     },
@@ -247,11 +328,14 @@ cc.Class({
                 
                 if(isBig)
                 {
+                    this.playBigShuidiMusic();
                     this.bigShuidiToSmall(animationNode.position);
                 }
-                this.playShuidiMusic();
+                else
+                {
+                    this.playShuidiMusic();
+                }
                 this.clearCount++;
-                this.windonsCount--;
             },this)
     },
     playBoom: function(node)
@@ -272,7 +356,66 @@ cc.Class({
             this.clearCount++;
     },
     playShuidiMusic:function(){
-         cc.audioEngine.playEffect(this.shuidiMusic, false);
+        var ramdomNumber =  Math.floor(Math.random() * 7+1);
+        if(ramdomNumber == 1)
+        {
+             cc.audioEngine.playEffect(this.doMusic, false);
+        }
+        if(ramdomNumber == 2)
+        {
+             cc.audioEngine.playEffect(this.reMusic, false);
+        }
+        if(ramdomNumber == 3)
+        {
+             cc.audioEngine.playEffect(this.miMusic, false);
+        }
+        if(ramdomNumber == 4)
+        {
+             cc.audioEngine.playEffect(this.faMusic, false);
+        }
+        if(ramdomNumber == 5)
+        {
+             cc.audioEngine.playEffect(this.soMusic, false);
+        }
+        if(ramdomNumber == 6)
+        {
+             cc.audioEngine.playEffect(this.laMusic, false);
+        }
+         if(ramdomNumber == 7)
+        {
+             cc.audioEngine.playEffect(this.xiMusic, false);
+        }
+    },
+    playBigShuidiMusic:function(){
+        var ramdomNumber =  Math.floor(Math.random() * 7+1);
+        if(ramdomNumber == 1)
+        {
+             cc.audioEngine.playEffect(this.doMusic, false);
+        }
+        if(ramdomNumber == 2)
+        {
+             cc.audioEngine.playEffect(this.reMusic, false);
+        }
+        if(ramdomNumber == 3)
+        {
+             cc.audioEngine.playEffect(this.miMusic, false);
+        }
+        if(ramdomNumber == 4)
+        {
+             cc.audioEngine.playEffect(this.faMusic, false);
+        }
+        if(ramdomNumber == 5)
+        {
+             cc.audioEngine.playEffect(this.soMusic, false);
+        }
+        if(ramdomNumber == 6)
+        {
+             cc.audioEngine.playEffect(this.laMusic, false);
+        }
+         if(ramdomNumber == 7)
+        {
+             cc.audioEngine.playEffect(this.xiMusic, false);
+        }
     },
     ctrlNiver:function(){
             if(this.destroyCount >= 2)
@@ -340,40 +483,96 @@ cc.Class({
 
     update: function (dt) {
       this.win();
+      if(this.nengliangtiaoCtrl.progress == 0)
+      {
+        this.fire1.position = cc.p(-1000,-1000);
+        this.fire2.position = cc.p(-1000,-1000);
+      }
+      else if(this.nengliangtiaoCtrl.progress  < 0.9)
+      {
+        this.fire1.position = cc.p(662,1244);
+        this.fire2.position = cc.p(-1000,-1000);
+      }
+      else if(this.nengliangtiaoCtrl.progress >=0.9)
+      {
+        this.fire1.position = cc.p(-1000,-1000);
+        this.fire2.position = cc.p(662,1244);
+      }
     },
     win:function(){
-        var userData = require("UserData");
-        if((this.spawnCount + this.bigSpawnCount) == (this.numberToSpawn + this.bigNumberToSpawn) && !this.isWin && this.windonsCount == 0)
+        var userData = JSON.parse(cc.sys.localStorage.getItem("UserData"));
+        
+        var tempYear = null;
+        if(this.currentYear == 1)
+        {
+            tempYear = userData.Year1;
+        }
+        if(this.currentYear == 2)
+        {
+            tempYear = userData.Year2;
+        }
+        if(this.currentYear == 3)
+        {
+            tempYear = userData.Year3;
+        }
+        
+        if(this.clearCount>= this.needCount &&  !this.isWin)
         {
             switch(this.currentChapterNumber)
             {
-                case 1: this.setUserData(userData.m1,userData.m2); 
+                case 1: this.setUserData(tempYear.m1,tempYear.m2); 
                         break;
-                case 2: this.setUserData(userData.m2,userData.m3); 
+                case 2: this.setUserData(tempYear.m2,tempYear.m3); 
                         break;
-                case 3: this.setUserData(userData.m3,userData.m4); 
+                case 3: this.setUserData(tempYear.m3,tempYear.m4); 
                         break;
-                case 4: this.setUserData(userData.m4,userData.m5); 
+                case 4: this.setUserData(tempYear.m4,tempYear.m5); 
                         break;
-                case 5: this.setUserData(userData.m5,userData.m6); 
+                case 5: this.setUserData(tempYear.m5,tempYear.m6); 
                         break;
-                case 6: this.setUserData(userData.m6,userData.m7); 
+                case 6: this.setUserData(tempYear.m6,tempYear.m7); 
                         break;
-                case 7: this.setUserData(userData.m7,userData.m8);
+                case 7: this.setUserData(tempYear.m7,tempYear.m8);
                         break;
-                case 8: this.setUserData(userData.m8,userData.m9);
+                case 8: this.setUserData(tempYear.m8,tempYear.m9);
                         break;
-                case 9: this.setUserData(userData.m9,userData.m10); 
+                case 9: this.setUserData(tempYear.m9,tempYear.m10); 
                         break;
-                case 10: this.setUserData(userData.m10,userData.m11); 
+                case 10: this.setUserData(tempYear.m10,tempYear.m11); 
                         break;
-                case 11: this.setUserData(userData.m11,userData.m12);
+                case 11: this.setUserData(tempYear.m11,tempYear.m12);
                         break;
-                case 12: this.setUserData(userData.m12); break
+                case 12: this.setUserData(tempYear.m12); break
             }
-            cc.log(JSON.stringify(userData));
-            cc.sys.localStorage.setItem('userData', JSON.stringify(userData));
+            cc.sys.localStorage.setItem('UserData', JSON.stringify(userData));
             this.isWin = true;
+            
+            
+        
+            this.unschedule(this.addSpawn);
+        
+            for(var i in this.nodeArray)
+            {
+                if(cc.isValid(this.nodeArray[i]))
+                {
+                    this.nodeArray[i].stopAllActions();
+                    this.playBoom(this.nodeArray[i]);
+                    this.nodeArray[i].destroy();
+                }
+            }
+        
+            
+            cc.director.loadScene('StartScene');
         }  
     },
+    
+    onDestroy:function(){
+        cc.audioEngine.uncache(this.doMusic);
+        cc.audioEngine.uncache(this.reMusic);
+        cc.audioEngine.uncache(this.miMusic);
+        cc.audioEngine.uncache(this.faMusic);
+        cc.audioEngine.uncache(this.soMusic);
+        cc.audioEngine.uncache(this.laMusic);
+        cc.audioEngine.uncache(this.xiMusic);
+    }
 });

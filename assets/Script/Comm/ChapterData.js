@@ -1,136 +1,174 @@
 
 var Chapter1 = {
-    bigNumberToSpawn: 10,
-    numberToSpawn: 10,
+    bigNumberToSpawn: 1000,
+    numberToSpawn: 1000,
     spawnInterval: 0.5,
+    needCount:100,
     niverCount: 1,
-    bg1Image: "",
-    bg2Image:"",
+    bg1Image: "GameScene/h",
+    bg2Image:"GameScene/B_28",
+    bg3Image:"GameScene/M01",
     bgMusic:"",
     chapterNumber:1,
+    moveNumber: 5
 }
 var Chapter2 = {
-    bigNumberToSpawn: 20,
-    numberToSpawn: 100,
-    spawnInterval: 0.5,
+    bigNumberToSpawn: 1000,
+    numberToSpawn: 1000,
+    spawnInterval: 0.45,
     niverCount: 1,
-    bg1Image: "",
-    bg2Image:"",
+    bg1Image: "GameScene/M02bbg",
+    bg2Image:"GameScene/M02fbg",
+    bg3Image:"GameScene/M02",
     bgMusic:"",
+    needCount:150,
     chapterNumber:2,
+    moveNumber: 5
 }
 var Chapter3 = {
-    bigNumberToSpawn: 30,
-    numberToSpawn: 100,
-    spawnInterval: 0.5,
+    bigNumberToSpawn: 1000,
+    numberToSpawn: 1000,
+    spawnInterval: 0.4,
     niverCount: 1,
     bg1Image: "",
     bg2Image:"",
+     bg3Image:"GameScene/M03",
     bgMusic:"",
+    needCount:90,
     chapterNumber:3,
+    moveNumber: 4
 }
 
 var Chapter4 = {
-    bigNumberToSpawn: 40,
-    numberToSpawn: 100,
-    spawnInterval: 0.5,
+    bigNumberToSpawn: 1000,
+    numberToSpawn: 1000,
+    spawnInterval: 0.35,
     niverCount: 1,
     bg1Image: "",
     bg2Image:"",
+    bg3Image:"GameScene/M04",
     bgMusic:"",
+    needCount:200,
     chapterNumber:4,
+    moveNumber: 4
 }
 
 var Chapter5 = {
-    bigNumberToSpawn: 50,
-    numberToSpawn: 100,
-    spawnInterval: 0.5,
+    bigNumberToSpawn: 1000,
+    numberToSpawn: 1000,
+    spawnInterval: 0.3,
     niverCount: 1,
     bg1Image: "",
     bg2Image:"",
+    bg3Image:"GameScene/M05",
     bgMusic:"",
+    needCount:250,
     chapterNumber:5,
+    moveNumber: 4
 }
 
 var Chapter6 = {
-    bigNumberToSpawn: 60,
-    numberToSpawn: 100,
-    spawnInterval: 0.5,
+    bigNumberToSpawn: 1000,
+    numberToSpawn: 1000,
+    spawnInterval: 0.25,
     niverCount: 1,
     bg1Image: "",
     bg2Image:"",
+    bg3Image:"GameScene/M06",
     bgMusic:"",
-    chapterNumber:6
+    needCount:300,
+    chapterNumber:6,
+    moveNumber: 3.5
 }
 
 var Chapter7 = {
-    bigNumberToSpawn: 70,
-    numberToSpawn: 100,
-    spawnInterval: 0.5,
+    bigNumberToSpawn: 1000,
+    numberToSpawn: 1000,
+    spawnInterval: 0.2,
     niverCount: 1,
     bg1Image: "",
     bg2Image:"",
+    bg3Image:"GameScene/M07",
     bgMusic:"",
-    chapterNumber:7
+    needCount:350,
+    chapterNumber:7,
+    moveNumber: 3.5
 }
 
 var Chapter8 = {
-    bigNumberToSpawn: 80,
-    numberToSpawn: 100,
-    spawnInterval: 0.5,
+    bigNumberToSpawn: 1000,
+    numberToSpawn: 1000,
+    spawnInterval: 0.2,
     niverCount: 1,
     bg1Image: "",
     bg2Image:"",
+    bg3Image:"GameScene/M08",
     bgMusic:"",
-    chapterNumber:8
+    needCount:400,
+    chapterNumber:8,
+    moveNumber: 3
 }
 
 var Chapter9 = {
-    bigNumberToSpawn: 90,
-    numberToSpawn: 100,
-    spawnInterval: 0.5,
+    bigNumberToSpawn: 1000,
+    numberToSpawn: 1000,
+    spawnInterval: 0.2,
     niverCount: 1,
     bg1Image: "",
     bg2Image:"",
+    bg3Image:"GameScene/M09",
     bgMusic:"",
-    chapterNumber:9
+    needCount:450,
+    chapterNumber:9,
+    moveNumber: 3
+    
 }
 
 var Chapter10 = {
-    bigNumberToSpawn: 100,
-    numberToSpawn: 100,
-    spawnInterval: 0.5,
+    bigNumberToSpawn: 1000,
+    numberToSpawn: 1000,
+    spawnInterval: 0.2,
     niverCount: 1,
     bg1Image: "",
     bg2Image:"",
+    bg3Image:"GameScene/M10",
     bgMusic:"",
-    chapterNumber:10
+    needCount:500,
+    chapterNumber:10,
+    moveNumber: 3
 }
 
 var Chapter11 = {
-    bigNumberToSpawn: 110,
-    numberToSpawn: 100,
-    spawnInterval: 0.5,
+    bigNumberToSpawn: 1000,
+    numberToSpawn: 1000,
+    spawnInterval: 0.2,
     niverCount: 1,
     bg1Image: "",
     bg2Image:"",
+    bg3Image:"GameScene/M11",
     bgMusic:"",
-    chapterNumber:11
+    needCount:550,
+    chapterNumber:11,
+    moveNumber: 3
 }
 
 var Chapter12 = {
-    bigNumberToSpawn: 120,
-    numberToSpawn: 100,
-    spawnInterval: 0.5,
+    bigNumberToSpawn: 1000,
+    numberToSpawn: 1000,
+    spawnInterval: 0.2,
     niverCount: 1,
     bg1Image: "",
     bg2Image:"",
+    bg3Image:"GameScene/M12",
     bgMusic:"",
-    chapterNumber:12
+    needCount:600,
+    chapterNumber:12,
+    moveNumber: 3
 }
 
 var chapterData = {
     currentChapter: null,
+    currentYear: 1,
     chapter1: Chapter1,
     chapter2: Chapter2,
     chapter3: Chapter3,

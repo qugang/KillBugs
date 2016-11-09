@@ -1,0 +1,7 @@
+{
+  "ver": "1.0.0",
+  "uuid": "93efbd9d-9eee-411f-9894-75cc450f9deb",
+  "atlasJson": "{\"imagePath\":\"texture.png\",\"name\":\"HotWind\",\"SubTexture\":[{\"width\":154,\"y\":1,\"height\":154,\"name\":\"Q_04\",\"x\":313},{\"width\":154,\"y\":1,\"height\":154,\"name\":\"e_04\",\"x\":157},{\"width\":154,\"y\":1,\"height\":154,\"name\":\"w_04\",\"x\":1}]}",
+  "texture": "e7f633b0-d79b-4f8c-adad-6c5141ad0fa8",
+  "subMetas": {}
+}

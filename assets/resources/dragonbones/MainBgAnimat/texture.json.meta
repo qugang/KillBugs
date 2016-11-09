@@ -1,0 +1,7 @@
+{
+  "ver": "1.0.0",
+  "uuid": "dc3fc893-ab58-4629-a2f4-8337d9f3805f",
+  "atlasJson": "{\"imagePath\":\"texture.png\",\"name\":\"MainBgAnimat\",\"SubTexture\":[{\"width\":750,\"y\":1,\"height\":1334,\"name\":\"a1\",\"x\":1},{\"width\":211,\"y\":1766,\"height\":128,\"name\":\"A2\",\"x\":1},{\"width\":601,\"y\":1337,\"height\":427,\"name\":\"A3_02\",\"x\":1},{\"width\":69,\"y\":1896,\"height\":109,\"name\":\"A2_09\",\"x\":89},{\"width\":96,\"y\":1766,\"height\":211,\"name\":\"A2_07\",\"x\":214},{\"width\":70,\"y\":1766,\"height\":90,\"name\":\"A2_12\",\"x\":312},{\"width\":86,\"y\":1896,\"height\":88,\"name\":\"A2_17\",\"x\":1},{\"width\":109,\"y\":1979,\"height\":68,\"name\":\"A2_20\",\"x\":160}]}",
+  "texture": "021fa43f-0e27-4226-8c54-a2de8d9ed0ee",
+  "subMetas": {}
+}

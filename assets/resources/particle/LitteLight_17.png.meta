@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "b7a884a2-85c8-4a9f-b4b8-95f46c30e587",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "LitteLight_17": {
+      "ver": "1.0.3",
+      "uuid": "f6822949-528b-4787-bf0f-9403ddfd2405",
+      "rawTextureUuid": "b7a884a2-85c8-4a9f-b4b8-95f46c30e587",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -1,
+      "offsetY": 0,
+      "trimX": 7,
+      "trimY": 8,
+      "width": 66,
+      "height": 66,
+      "rawWidth": 82,
+      "rawHeight": 82,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "ver": "1.0.0",
-  "uuid": "15b0b64a-3b36-4d9f-9ec8-c43622b54142",
-  "atlasJson": "{\"SubTexture\":[{\"width\":152,\"y\":1,\"height\":152,\"name\":\"A_13\",\"x\":1}],\"name\":\"river1\",\"imagePath\":\"texture.png\"}",
-  "texture": "c613b066-a4e5-4fca-9bd3-cc0997f60dad",
-  "subMetas": {}
-}
