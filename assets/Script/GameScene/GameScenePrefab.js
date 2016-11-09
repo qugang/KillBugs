@@ -236,7 +236,7 @@ cc.Class({
                 animationNode.parent = this.node;
                 animationNode.position = event.getLocation();
                 var value = animationNode.getComponent(dragonBones.ArmatureDisplay);
-                value.armature().animation.play("newAnimation",1);
+                value.armature().animation.play("firewindFB",1);
                 for(var i in this.nodeArray)
                 {
                     if(cc.isValid(this.nodeArray[i]))

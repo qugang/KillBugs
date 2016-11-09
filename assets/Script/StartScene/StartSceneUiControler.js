@@ -12,6 +12,10 @@ cc.Class({
         //    readonly: false,    // optional, default is false
         // },
         // ...
+        mStart:{
+            default:null,
+            type:cc.Node
+        },
         mainBg:{
             default:null,
             type:cc.Node
@@ -314,9 +318,10 @@ cc.Class({
                 if(this.currentYear <3)
                 {
                     this.currentYear++;
-                    this.yearNode.getComponent(cc.Sprite).spriteFrame = 
-                    this.intitButtonStar(this.userdata);
-                    this.loadYear();
+                    this.mStart.runAction(cc.sequence(cc.fadeOut(0.5),cc.fadeIn(0.5),cc.callFunc(function(){
+                        this.intitButtonStar(this.userdata);
+                        this.loadYear();
+                    }.bind(this))));
                 }
             }
             if(event.getStartLocation().x < event.getLocation().x)
@@ -324,33 +329,30 @@ cc.Class({
                 if(this.currentYear > 1)
                 {
                     this.currentYear--;
-                    this.intitButtonStar(this.userdata);
-                    this.loadYear();
+                    this.mStart.runAction(cc.sequence(cc.fadeOut(0.5),cc.fadeIn(0.5),cc.callFunc(function(){
+                        this.intitButtonStar(this.userdata);
+                        this.loadYear();
+                    }.bind(this))));
                 }
             }
         }.bind(this));
-      // cc.log(JSON.stringify(userdata))
-        //cc.log(userdata);
     },
     loadYear: function(){
         if(this.currentYear == 1)
         {
             cc.loader.loadRes("StartScene/Y1_06",cc.SpriteFrame,function(err,spriteFrame){
-                cc.log("err" + err);
                 this.yearNode.getComponent(cc.Sprite).spriteFrame = spriteFrame
             }.bind(this));
         }
         if(this.currentYear == 2)
         {
             cc.loader.loadRes("StartScene/Y2_06",cc.SpriteFrame,function(err,spriteFrame){
-                cc.log("err" + err);
                 this.yearNode.getComponent(cc.Sprite).spriteFrame = spriteFrame
             }.bind(this));
         }
         if(this.currentYear == 3)
         {
              cc.loader.loadRes("StartScene/Y3_06",cc.SpriteFrame,function(err,spriteFrame){
-                cc.log("err" + err);
                 this.yearNode.getComponent(cc.Sprite).spriteFrame = spriteFrame
             }.bind(this));
         }
@@ -408,15 +410,29 @@ cc.Class({
     },
     enableStar:function(starNumber,star1,star2,star3)
     {
-        if(starNumber <1)
+        if(starNumber >= 1)
+        {
+             star1.getComponent(cc.Sprite).enabled = true;
+        }
+        else
         {
             star1.getComponent(cc.Sprite).enabled = false;
         }
-        if(starNumber <2)
+        
+        if(starNumber >= 2)
+        {
+            star2.getComponent(cc.Sprite).enabled = true;
+        }
+        else
         {
             star2.getComponent(cc.Sprite).enabled = false;
         }
-        if(starNumber <3)
+        
+        if(starNumber >= 3)
+        {
+             star3.getComponent(cc.Sprite).enabled = true;
+        }
+        else
         {
             star3.getComponent(cc.Sprite).enabled = false;
         }

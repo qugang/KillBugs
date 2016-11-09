@@ -7077,6 +7077,9 @@
       "__id__": 4
     },
     "_enabled": true,
+    "mStart": {
+      "__id__": 4
+    },
     "mainBg": {
       "__id__": 5
     },

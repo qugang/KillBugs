@@ -1,7 +1,7 @@
 {
   "ver": "1.0.0",
   "uuid": "04cb37b3-f5af-482e-b411-1988d67f1137",
-  "atlasJson": "{\"imagePath\":\"texture.png\",\"name\":\"firewindFB\",\"SubTexture\":[{\"width\":750,\"y\":1,\"height\":1334,\"name\":\"A\",\"x\":1},{\"frameHeight\":468,\"y\":1707,\"frameX\":0,\"width\":750,\"frameY\":-37,\"height\":337,\"name\":\"D_02\",\"frameWidth\":750,\"x\":1},{\"frameHeight\":468,\"y\":1337,\"frameX\":0,\"width\":750,\"frameY\":-52,\"height\":368,\"name\":\"S_02\",\"frameWidth\":750,\"x\":1}]}",
+  "atlasJson": "{\"imagePath\":\"texture.png\",\"name\":\"firewindFB\",\"SubTexture\":[{\"width\":750,\"y\":1,\"height\":1334,\"name\":\"A\",\"x\":1},{\"frameHeight\":341,\"y\":1337,\"frameX\":0,\"width\":750,\"frameY\":-55,\"height\":216,\"name\":\"FireWindLine\",\"frameWidth\":750,\"x\":1}]}",
   "texture": "337995e8-a700-4d16-949a-dfcb506fb808",
   "subMetas": {}
 }
