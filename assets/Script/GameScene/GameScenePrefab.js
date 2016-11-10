@@ -136,6 +136,14 @@ cc.Class({
             default:null,
             type:cc.Node
         },
+        zhanli:{
+            default:null,
+            type:cc.Node
+        },
+        chongzou:{
+            default:null,
+            type:cc.Node
+        },
         bigNumberToSpawn:0,
         numberToSpawn:0,
         spawnInterval:0

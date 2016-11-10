@@ -1,0 +1,7 @@
+{
+  "ver": "1.0.0",
+  "uuid": "757aad5c-c389-46ed-acac-b1877aa2c550",
+  "atlasJson": "{\"SubTexture\":[{\"width\":96,\"y\":139,\"height\":80,\"name\":\"1_06\",\"x\":1},{\"y\":1,\"frameX\":-1,\"frameHeight\":80,\"frameY\":0,\"width\":93,\"frameWidth\":96,\"height\":78,\"name\":\"1_09\",\"x\":67},{\"y\":1,\"frameX\":0,\"frameHeight\":138,\"frameY\":-1,\"width\":64,\"frameWidth\":65,\"height\":136,\"name\":\"1_10\",\"x\":1}],\"name\":\"zhanli\",\"imagePath\":\"texture.png\"}",
+  "texture": "a7b2f825-dc2e-45c1-9371-5a90e3d62e15",
+  "subMetas": {}
+}
