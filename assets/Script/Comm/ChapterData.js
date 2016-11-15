@@ -3,14 +3,18 @@ var Chapter1 = {
     bigNumberToSpawn: 1000,
     numberToSpawn: 1000,
     spawnInterval: 0.5,
-    needCount:100,
+    needCount:10,
     niverCount: 1,
     bg1Image: "GameScene/h",
     bg2Image:"GameScene/B_28",
     bg3Image:"GameScene/M01",
     bgMusic:"",
     chapterNumber:1,
-    moveNumber: 5
+    moveNumber: 5,
+    lightingNumber:0,
+    snowNumber:1,
+    timeiceNumber:0,
+    slowNumber:0
 }
 var Chapter2 = {
     bigNumberToSpawn: 1000,
@@ -23,7 +27,11 @@ var Chapter2 = {
     bgMusic:"",
     needCount:150,
     chapterNumber:2,
-    moveNumber: 5
+    moveNumber: 5,
+    lightingNumber:0,
+    snowNumber:0,
+    timeiceNumber:0,
+    slowNumber:0
 }
 var Chapter3 = {
     bigNumberToSpawn: 1000,
@@ -36,7 +44,11 @@ var Chapter3 = {
     bgMusic:"",
     needCount:90,
     chapterNumber:3,
-    moveNumber: 4
+    moveNumber: 4,
+    lightingNumber:0,
+    snowNumber:0,
+    timeiceNumber:0,
+    slowNumber:0
 }
 
 var Chapter4 = {
@@ -50,7 +62,11 @@ var Chapter4 = {
     bgMusic:"",
     needCount:200,
     chapterNumber:4,
-    moveNumber: 4
+    moveNumber: 4,
+    lightingNumber:2,
+    snowNumber:0,
+    timeiceNumber:0,
+    slowNumber:0
 }
 
 var Chapter5 = {
@@ -64,7 +80,11 @@ var Chapter5 = {
     bgMusic:"",
     needCount:250,
     chapterNumber:5,
-    moveNumber: 4
+    moveNumber: 4,
+    lightingNumber:4,
+    snowNumber:0,
+    timeiceNumber:0,
+    slowNumber:0
 }
 
 var Chapter6 = {
@@ -78,7 +98,11 @@ var Chapter6 = {
     bgMusic:"",
     needCount:300,
     chapterNumber:6,
-    moveNumber: 3.5
+    moveNumber: 3.5,
+    lightingNumber:10,
+    snowNumber:0,
+    timeiceNumber:0,
+    slowNumber:0
 }
 
 var Chapter7 = {
@@ -92,7 +116,11 @@ var Chapter7 = {
     bgMusic:"",
     needCount:350,
     chapterNumber:7,
-    moveNumber: 3.5
+    moveNumber: 3.5,
+    lightingNumber:15,
+    snowNumber:0,
+    timeiceNumber:0,
+    slowNumber:1
 }
 
 var Chapter8 = {
@@ -106,7 +134,11 @@ var Chapter8 = {
     bgMusic:"",
     needCount:400,
     chapterNumber:8,
-    moveNumber: 3
+    moveNumber: 3,
+    lightingNumber:15,
+    snowNumber:0,
+    timeiceNumber:0,
+    slowNumber:5
 }
 
 var Chapter9 = {
@@ -118,10 +150,13 @@ var Chapter9 = {
     bg2Image:"GameScene/M09fbg",
     bg3Image:"GameScene/M09",
     bgMusic:"",
-    needCount:450,
+    needCount:1,
     chapterNumber:9,
-    moveNumber: 3
-    
+    moveNumber: 3,
+    lightingNumber:15,
+    snowNumber:0,
+    timeiceNumber:0,
+    slowNumber:10
 }
 
 var Chapter10 = {
@@ -133,9 +168,13 @@ var Chapter10 = {
     bg2Image:"GameScene/M10fbg",
     bg3Image:"GameScene/M10",
     bgMusic:"",
-    needCount:500,
+    needCount:1,
     chapterNumber:10,
-    moveNumber: 3
+    moveNumber: 3,
+    lightingNumber:15,
+    snowNumber:0,
+    timeiceNumber:0,
+    slowNumber:20
 }
 
 var Chapter11 = {
@@ -147,9 +186,13 @@ var Chapter11 = {
     bg2Image:"GameScene/M11fbg",
     bg3Image:"GameScene/M11",
     bgMusic:"",
-    needCount:550,
+    needCount:1,
     chapterNumber:11,
-    moveNumber: 3
+    moveNumber: 3,
+    lightingNumber:15,
+    snowNumber:0,
+    timeiceNumber:0,
+    slowNumber:25
 }
 
 var Chapter12 = {
@@ -161,9 +204,13 @@ var Chapter12 = {
     bg2Image:"GameScene/M12fbg",
     bg3Image:"GameScene/M12",
     bgMusic:"",
-    needCount:600,
+    needCount:1,
     chapterNumber:12,
-    moveNumber: 3
+    moveNumber: 3,
+    lightingNumber:15,
+    snowNumber:0,
+    timeiceNumber:0,
+    slowNumber:30
 }
 
 var chapterData = {

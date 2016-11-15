@@ -7334,7 +7334,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 63,
-      "y": 28
+      "y": 32
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -7361,6 +7361,9 @@
     },
     "_enabled": true,
     "_custom": false,
+    "_file": {
+      "__uuid__": "3348e91e-924f-48a8-ac12-c1fae404f81e"
+    },
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "playOnLoad": true,

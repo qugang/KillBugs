@@ -140,7 +140,59 @@ cc.Class({
             default:null,
             type:cc.Node
         },
+        longStart:{
+            default:null,
+            type:cc.Node
+        },
         chongzou:{
+            default:null,
+            type:cc.Node
+        },
+        winBg:{
+            default:null,
+            type:cc.Node
+        },
+        winReStart:{
+            default:null,
+            type:cc.Node
+        },
+        winBack:{
+            default:null,
+            type:cc.Node
+        },
+        winStar1:{
+            default:null,
+            type:cc.Node
+        },
+        winStar2:{
+            default:null,
+            type:cc.Node
+        },
+        winStar3:{
+            default:null,
+            type:cc.Node
+        },
+        winBoomLable:{
+            default:null,
+            type:cc.Node
+        },
+        winLostLable:{
+            default:null,
+            type:cc.Node
+        },
+        failBg:{
+            default:null,
+            type:cc.Node,
+        },
+        failReStart:{
+            default:null,
+            type:cc.Node,
+        },
+        failBack:{
+            default:null,
+            type:cc.Node
+        },
+        failBoomLable:{
             default:null,
             type:cc.Node
         },
@@ -209,6 +261,12 @@ cc.Class({
         this.currentYear = chapterData.currentYear;
         this.needCount = chapterData.currentChapter.needCount;
         this.moveNumber = chapterData.currentChapter.moveNumber;
+        this.lightingNumber =  chapterData.currentChapter.lightingNumber;
+        this.snowNumber = chapterData.currentChapter.snowNumber;
+        this.timeiceNumber = chapterData.currentChapter.timeiceNumber;
+        this.slowNumber = chapterData.currentChapter.slowNumber;
+        
+        
         
         this.randomRange = cc.p(650,1334);
         this.spawnCount = 0;
@@ -216,11 +274,31 @@ cc.Class({
         this.destroyCount = 0;
         this.clearCount = 0;
         this.isWin = false;
+        this.isFail = false;
         this.nodeArray = new Array();
         this.nengliangtiaoCtrl.progress = 0;
         this.fire1.position = cc.p(-1000,-1000);
         this.fire1.position = cc.p(-1000,-1000);
+        this.chongzou.position = cc.p(-1000,-1000);
         this.initNiver();
+        
+        
+        this.winReStart.on("click",function(event){
+             cc.director.loadScene('GameScene');
+        });
+        
+        this.winBack.on("click",function(event){
+            cc.director.loadScene('StartScene');
+        });
+        
+        this.failReStart.on("click",function(event){
+            cc.director.loadScene('StartScene');
+        });
+        
+        this.failBack.on("click",function(event){
+             cc.director.loadScene('GameScene');
+        });
+        
         
         cc.loader.loadRes(this.bg1Image,cc.SpriteFrame,function(err,spriteFrame){
                 cc.log("err" + err);
@@ -235,8 +313,22 @@ cc.Class({
                 this.bg3Node.getComponent(cc.Sprite).spriteFrame = spriteFrame
         }.bind(this));
         
+        var longAnimation = this.longStart.getComponent(dragonBones.ArmatureDisplay);
+        longAnimation.armature().animation.play("dragonstart",1);
         
-        this.schedule(this.addSpawn,this.spawnInterval);
+        longAnimation.addEventListener(dragonBones.EventObject.FRAME_EVENT,function(event){
+            if(event.detail.name == "flyend")
+            {
+                
+                this.schedule(this.addSpawn,this.spawnInterval);
+                //animationNode.destroy();
+                 this.schedule(function(){
+                    var zhanliAnimation = this.zhanli.getComponent(dragonBones.ArmatureDisplay);
+                    zhanliAnimation.armature().animation.play("womanstanding",1);
+                }.bind(this),3);
+            }
+        }, this);
+        
         this.nengliang.on(cc.Node.EventType.TOUCH_START,function(event){
             if (this.nengliangtiaoCtrl.progress >=0.9)
             {
@@ -470,23 +562,52 @@ cc.Class({
         {
             uData.isEnable = true;
             uData.star = 3;
-            nextUData.isEnable = true;
+            if(nextUData != undefined)
+                nextUData.isEnable = true;
+            this.winStar1.getComponent(cc.Sprite).enabled = true;
+            this.winStar2.getComponent(cc.Sprite).enabled = true;
+            this.winStar3.getComponent(cc.Sprite).enabled = true;
+            
         }
         else if(this.destroyCount <=5)
         {
             uData.isEnable = true;
             uData.star = 2;
-            nextUData.isEnable = true;
+            if(nextUData != undefined)
+                nextUData.isEnable = true;
+            this.winStar1.getComponent(cc.Sprite).enabled = true;
+            this.winStar2.getComponent(cc.Sprite).enabled = true;
+            this.winStar3.getComponent(cc.Sprite).enabled = false;
         }
         else if(this.destroyCount >5)
         {
             uData.isEnable = true;
             uData.star = 1;
+            this.winStar1.getComponent(cc.Sprite).enabled = true;
+            this.winStar2.getComponent(cc.Sprite).enabled = false;
+            this.winStar3.getComponent(cc.Sprite).enabled = false;
         }
     },
     fail:function(){
-        cc.log("Fail");
-        this.isWin = true;
+        
+        if(!this.isFail)
+        {
+            this.isWin = true;
+            this.isFail = true;
+            this.unschedule(this.addSpawn);
+            this.zhanli.position = cc.p(-1000,-1000);
+            this.chongzou.position = cc.p(-109,-361);
+            var chongzouAnimation =  this.chongzou.getComponent(dragonBones.ArmatureDisplay);
+            chongzouAnimation.armature().animation.play("chongzou",1);
+        
+            chongzouAnimation.addEventListener(dragonBones.EventObject.FRAME_EVENT,function(event){
+                if(event.detail.name == "chongzoue")
+                {
+                    this.failBg.position = cc.p(375,665);
+                    this.failBoomLable.getComponent(cc.Label).string = this.clearCount;
+                }
+            }, this);
+        }
     },
 
     update: function (dt) {
@@ -568,9 +689,9 @@ cc.Class({
                     this.nodeArray[i].destroy();
                 }
             }
-        
-            
-            cc.director.loadScene('StartScene');
+            this.winBoomLable.getComponent(cc.Label).string = this.clearCount;
+            this.winLostLable.getComponent(cc.Label).string = this.destroyCount;
+            this.winBg.position = cc.p(375,665);
         }  
     },
     

@@ -1,0 +1,7 @@
+{
+  "ver": "1.0.0",
+  "uuid": "a1d33ab0-595e-4d1b-8212-283897cb59b0",
+  "atlasJson": "{\"SubTexture\":[{\"y\":1,\"frameX\":0,\"frameY\":-1,\"width\":198,\"frameWidth\":200,\"height\":198,\"name\":\"Ab_07\",\"frameHeight\":200,\"x\":1},{\"y\":1,\"frameX\":0,\"frameY\":0,\"width\":91,\"frameWidth\":92,\"height\":91,\"name\":\"As_07\",\"frameHeight\":92,\"x\":201}],\"name\":\"timeice\",\"imagePath\":\"texture.png\"}",
+  "texture": "dc0196e6-2431-4996-8159-4ddf40ed91f5",
+  "subMetas": {}
+}

@@ -1,0 +1,7 @@
+{
+  "ver": "1.0.0",
+  "uuid": "79642388-b025-47ab-b4b9-48e59ce5c00a",
+  "atlasJson": "{\"SubTexture\":[{\"y\":1,\"frameX\":-2,\"frameY\":-2,\"width\":198,\"frameWidth\":200,\"height\":198,\"name\":\"Ab_09\",\"frameHeight\":200,\"x\":1},{\"y\":1,\"frameX\":0,\"frameY\":0,\"width\":91,\"frameWidth\":92,\"height\":91,\"name\":\"As_09\",\"frameHeight\":92,\"x\":201}],\"name\":\"lighting\",\"imagePath\":\"texture.png\"}",
+  "texture": "07a6cc21-f77b-4bb2-b4c5-c7e67a3df267",
+  "subMetas": {}
+}
