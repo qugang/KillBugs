@@ -196,6 +196,22 @@ cc.Class({
             default:null,
             type:cc.Node
         },
+        lSlow:{
+            default:null,
+            type:cc.Node
+        },
+        lSnow:{
+            default:null,
+            type:cc.Node
+        },
+        lLighting:{
+            default:null,
+            type:cc.Node
+        },
+        lTimeice:{
+            default:null,
+            type:cc.Node
+        },
         bigNumberToSpawn:0,
         numberToSpawn:0,
         spawnInterval:0
@@ -206,6 +222,13 @@ cc.Class({
             this.clearRepeater();
             return;
         }
+        
+        var ramdomNumber =  Math.floor(Math.random() * 1+5);
+        if(ramdomNumber == 1)
+        {
+            this.addSpecialEffect();
+        }
+        
         
         var node = new cc.Node('shuidi ' + this.spawnCount + this.bigSpawnCount);
         var sp = node.addComponent(cc.Sprite);
@@ -236,6 +259,8 @@ cc.Class({
         }.bind(this))));
     },
     
+    
+    
     // use this for initialization
     onLoad: function () {
         
@@ -265,6 +290,11 @@ cc.Class({
         this.snowNumber = chapterData.currentChapter.snowNumber;
         this.timeiceNumber = chapterData.currentChapter.timeiceNumber;
         this.slowNumber = chapterData.currentChapter.slowNumber;
+        
+        this.needlightingNumber = 0;
+        this.needsnowNumber = 0;
+        this.needtimeiceNumber = 0;
+        this.needslowNumber = 0;
         
         
         
@@ -349,6 +379,26 @@ cc.Class({
                 this.nengliangtiaoCtrl.progress = 0;
             }
         },this);
+    },
+    
+    addSpecialEffect:function(){
+        if(this.lightingNumber > 0 && this.needlightingNumber < this.lightingNumber)
+        {
+            this.needlightingNumber++;
+        }
+        else if(this.snowNumber > 0 && this.needsnowNumber < this.snowNumber )
+        {
+            this.needsnowNumber++;
+        }
+        else if(this.timeiceNumber > 0 && this.needtimeiceNumber < this.timeiceNumber)
+        {
+            this.needtimeiceNumber++;
+        }
+        else if(this.slowNumber > 0 && this.needslowNumber < this.slowNumber )
+        {
+            this.needslowNumber++;
+        }
+        
     },
     
     

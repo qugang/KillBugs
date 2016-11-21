@@ -87,7 +87,7 @@
         "__id__": 51
       },
       {
-        "__id__": 89
+        "__id__": 95
       },
       {
         "__id__": 55
@@ -96,16 +96,16 @@
         "__id__": 77
       },
       {
-        "__id__": 91
-      },
-      {
         "__id__": 93
       },
       {
-        "__id__": 95
+        "__id__": 91
       },
       {
         "__id__": 97
+      },
+      {
+        "__id__": 89
       }
     ],
     "_localZOrder": 0,
@@ -1188,6 +1188,16 @@
     "failBoomLable": {
       "__id__": 86
     },
+    "lSlow": {
+      "__id__": 89
+    },
+    "lSnow": {
+      "__id__": 91
+    },
+    "lLighting": {
+      "__id__": 93
+    },
+    "lTimeice": null,
     "bigNumberToSpawn": 20,
     "numberToSpawn": 100,
     "spawnInterval": 0.5
@@ -3677,7 +3687,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "music",
+    "_name": "slow",
     "_objFlags": 0,
     "_opacity": 255,
     "_color": {
@@ -3708,8 +3718,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": -202,
+      "y": 202
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -3717,7 +3727,7 @@
     "_globalZOrder": 0,
     "_tag": -1,
     "_opacityModifyRGB": false,
-    "_id": "c3d28EZx0tEkq/rCs4WB3UL",
+    "_id": "b2162dHTuBGpLrI4nIh9AQM",
     "_active": true,
     "_components": [
       {
@@ -3728,90 +3738,21 @@
     "groupIndex": 0
   },
   {
-    "__type__": "cc.AudioSource",
+    "__type__": "dragonBones.ArmatureDisplay",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 89
     },
     "_enabled": true,
-    "_clip": {
-      "__uuid__": "36f70d6c-3d5d-4e42-ae42-995d01cfc3df"
-    },
-    "_volume": 0.6,
-    "_mute": false,
-    "_loop": true,
-    "playOnLoad": true,
-    "preload": false
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "lighting",
-    "_objFlags": 0,
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_parent": {
-      "__id__": 1
-    },
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
-    },
-    "_children": [],
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": -573,
-      "y": -4
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_tag": -1,
-    "_opacityModifyRGB": false,
-    "_id": "e81288LLIVOP7L1zXJ0ZPBy",
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 92
-      }
-    ],
-    "_prefab": null,
-    "groupIndex": 0
-  },
-  {
-    "__type__": "dragonBones.ArmatureDisplay",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 91
-    },
-    "_enabled": true,
     "_armatureName": "Armature",
     "_animationName": "",
     "playTimes": -1,
     "_N$dragonAsset": {
-      "__uuid__": "a8d9c082-c5cb-4f5c-8a57-853e9bd0bf0f"
+      "__uuid__": "61d3ed3b-7b73-418b-a6a4-b949afe7a8f9"
     },
     "_N$dragonAtlasAsset": {
-      "__uuid__": "79642388-b025-47ab-b4b9-48e59ce5c00a"
+      "__uuid__": "0eedf1fc-be67-43fe-bf21-c512df7786e0"
     },
     "_N$_defaultArmatureIndex": 0,
     "_N$_animationIndex": 0,
@@ -3864,6 +3805,80 @@
     "_active": true,
     "_components": [
       {
+        "__id__": 92
+      }
+    ],
+    "_prefab": null,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "dragonBones.ArmatureDisplay",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 91
+    },
+    "_enabled": true,
+    "_armatureName": "Armature",
+    "_animationName": "",
+    "playTimes": -1,
+    "_N$dragonAsset": {
+      "__uuid__": "22a2f8f8-a029-4400-bec4-906d6cff194c"
+    },
+    "_N$dragonAtlasAsset": {
+      "__uuid__": "4f0af730-9391-43b2-9705-0ac440f38c5b"
+    },
+    "_N$_defaultArmatureIndex": 0,
+    "_N$_animationIndex": 0,
+    "_N$timeScale": 1,
+    "_N$debugBones": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "lighting",
+    "_objFlags": 0,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_parent": {
+      "__id__": 1
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_children": [],
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": -573,
+      "y": -4
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_tag": -1,
+    "_opacityModifyRGB": false,
+    "_id": "e81288LLIVOP7L1zXJ0ZPBy",
+    "_active": true,
+    "_components": [
+      {
         "__id__": 94
       }
     ],
@@ -3882,15 +3897,84 @@
     "_animationName": "",
     "playTimes": -1,
     "_N$dragonAsset": {
-      "__uuid__": "22a2f8f8-a029-4400-bec4-906d6cff194c"
+      "__uuid__": "a8d9c082-c5cb-4f5c-8a57-853e9bd0bf0f"
     },
     "_N$dragonAtlasAsset": {
-      "__uuid__": "4f0af730-9391-43b2-9705-0ac440f38c5b"
+      "__uuid__": "79642388-b025-47ab-b4b9-48e59ce5c00a"
     },
     "_N$_defaultArmatureIndex": 0,
     "_N$_animationIndex": 0,
     "_N$timeScale": 1,
     "_N$debugBones": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "music",
+    "_objFlags": 0,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_parent": {
+      "__id__": 1
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_children": [],
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_tag": -1,
+    "_opacityModifyRGB": false,
+    "_id": "c3d28EZx0tEkq/rCs4WB3UL",
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 96
+      }
+    ],
+    "_prefab": null,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.AudioSource",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 95
+    },
+    "_enabled": true,
+    "_clip": {
+      "__uuid__": "36f70d6c-3d5d-4e42-ae42-995d01cfc3df"
+    },
+    "_volume": 0.6,
+    "_mute": false,
+    "_loop": true,
+    "playOnLoad": true,
+    "preload": false
   },
   {
     "__type__": "cc.Node",
@@ -3938,80 +4022,6 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 96
-      }
-    ],
-    "_prefab": null,
-    "groupIndex": 0
-  },
-  {
-    "__type__": "dragonBones.ArmatureDisplay",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 95
-    },
-    "_enabled": true,
-    "_armatureName": "Armature",
-    "_animationName": "",
-    "playTimes": -1,
-    "_N$dragonAsset": {
-      "__uuid__": "6988c7af-f4d0-449e-91b9-c38a1794c829"
-    },
-    "_N$dragonAtlasAsset": {
-      "__uuid__": "a1d33ab0-595e-4d1b-8212-283897cb59b0"
-    },
-    "_N$_defaultArmatureIndex": 0,
-    "_N$_animationIndex": 0,
-    "_N$timeScale": 1,
-    "_N$debugBones": false
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "slow",
-    "_objFlags": 0,
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_parent": {
-      "__id__": 1
-    },
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
-    },
-    "_children": [],
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": -202,
-      "y": 202
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_tag": -1,
-    "_opacityModifyRGB": false,
-    "_id": "b2162dHTuBGpLrI4nIh9AQM",
-    "_active": true,
-    "_components": [
-      {
         "__id__": 98
       }
     ],
@@ -4030,10 +4040,10 @@
     "_animationName": "",
     "playTimes": -1,
     "_N$dragonAsset": {
-      "__uuid__": "61d3ed3b-7b73-418b-a6a4-b949afe7a8f9"
+      "__uuid__": "6988c7af-f4d0-449e-91b9-c38a1794c829"
     },
     "_N$dragonAtlasAsset": {
-      "__uuid__": "0eedf1fc-be67-43fe-bf21-c512df7786e0"
+      "__uuid__": "a1d33ab0-595e-4d1b-8212-283897cb59b0"
     },
     "_N$_defaultArmatureIndex": 0,
     "_N$_animationIndex": 0,
