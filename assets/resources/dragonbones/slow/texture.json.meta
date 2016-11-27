@@ -1,7 +1,7 @@
 {
   "ver": "1.0.0",
   "uuid": "0eedf1fc-be67-43fe-bf21-c512df7786e0",
-  "atlasJson": "{\"SubTexture\":[{\"y\":1,\"frameX\":0,\"frameY\":-2,\"width\":198,\"frameWidth\":200,\"height\":198,\"name\":\"Ab_11\",\"frameHeight\":200,\"x\":1},{\"y\":1,\"frameX\":0,\"frameY\":0,\"width\":91,\"frameWidth\":92,\"height\":91,\"name\":\"As_11\",\"frameHeight\":92,\"x\":201}],\"name\":\"slow\",\"imagePath\":\"texture.png\"}",
+  "atlasJson": "{\"imagePath\":\"texture.png\",\"name\":\"slow\",\"SubTexture\":[{\"frameY\":-2,\"y\":1,\"frameWidth\":200,\"frameX\":0,\"frameHeight\":200,\"width\":198,\"height\":198,\"name\":\"Ab_11\",\"x\":1},{\"frameY\":0,\"y\":1,\"frameWidth\":92,\"frameX\":0,\"frameHeight\":92,\"width\":91,\"height\":91,\"name\":\"As_11\",\"x\":201}]}",
   "texture": "b03cdd98-269f-4da3-a531-4cfbe5e53687",
   "subMetas": {}
 }

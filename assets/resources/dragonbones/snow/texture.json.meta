@@ -1,7 +1,0 @@
-{
-  "ver": "1.0.0",
-  "uuid": "4f0af730-9391-43b2-9705-0ac440f38c5b",
-  "atlasJson": "{\"SubTexture\":[{\"y\":1,\"frameX\":-3,\"frameY\":-13,\"width\":149,\"frameWidth\":156,\"height\":129,\"name\":\"As_03\",\"frameHeight\":156,\"x\":1}],\"name\":\"snow\",\"imagePath\":\"texture.png\"}",
-  "texture": "ad83e75f-d3e6-412e-9d18-b405d3ea7cdd",
-  "subMetas": {}
-}

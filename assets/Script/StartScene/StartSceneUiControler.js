@@ -215,6 +215,14 @@ cc.Class({
         yearNode:{
             default:null,
             type:cc.Node
+        },
+        startButtonMusic:{
+           url: cc.AudioClip,
+           default:null
+        },
+        cutyearMusic:{
+           url: cc.AudioClip,
+           default:null
         }
     },
 
@@ -223,6 +231,7 @@ cc.Class({
         var userdata = require("UserData");
         
         //cc.sys.localStorage.setItem('UserData', JSON.stringify(userdata));
+        // cc.sys.localStorage.setItem('UserData', JSON.stringify(userdata));
         if(cc.sys.localStorage.getItem("UserData") !== null)
         {
             userdata = JSON.parse(cc.sys.localStorage.getItem("UserData"));
@@ -235,6 +244,8 @@ cc.Class({
         this.userdata = userdata;
         this.currentYear = 1;
         
+        cc.log(this.userdata.Year2.m1.isEnable);
+        
         this.intitButtonStar(userdata);
         
         var chapterData = require("ChapterData");
@@ -242,34 +253,40 @@ cc.Class({
             chapterData.currentChapter = chapterData.chapter1;
             chapterData.currentYear = this.currentYear;
             cc.director.loadScene('GameScene');
+            cc.audioEngine.playEffect(this.startButtonMusic, false);
         }.bind(this));
         this.m2Button.on("click",function(event){
             chapterData.currentChapter = chapterData.chapter2;
             cc.director.loadScene('GameScene');
+            cc.audioEngine.playEffect(this.startButtonMusic, false);
         }.bind(this));
         
         this.m3Button.on("click",function(event){
             chapterData.currentChapter = chapterData.chapter3;
             chapterData.currentYear = this.currentYear;
             cc.director.loadScene('GameScene');
+            cc.audioEngine.playEffect(this.startButtonMusic, false);
         }.bind(this));
         
         this.m4Button.on("click",function(event){
             chapterData.currentChapter = chapterData.chapter4;
             chapterData.currentYear = this.currentYear;
             cc.director.loadScene('GameScene');
+            cc.audioEngine.playEffect(this.startButtonMusic, false);
         }.bind(this));
         
         this.m5Button.on("click",function(event){
             chapterData.currentChapter = chapterData.chapter5;
             chapterData.currentYear = this.currentYear;
             cc.director.loadScene('GameScene');
+            cc.audioEngine.playEffect(this.startButtonMusic, false);
         }.bind(this));
         
         this.m6Button.on("click",function(event){
             chapterData.currentChapter = chapterData.chapter6;
             chapterData.currentYear = this.currentYear;
             cc.director.loadScene('GameScene');
+            cc.audioEngine.playEffect(this.startButtonMusic, false);
         }.bind(this));
         
         
@@ -277,6 +294,7 @@ cc.Class({
             chapterData.currentChapter = chapterData.chapter7;
             chapterData.currentYear = this.currentYear;
             cc.director.loadScene('GameScene');
+            cc.audioEngine.playEffect(this.startButtonMusic, false);
         }.bind(this));
         
         
@@ -284,6 +302,7 @@ cc.Class({
             chapterData.currentChapter = chapterData.chapter8;
             chapterData.currentYear = this.currentYear;
             cc.director.loadScene('GameScene');
+            cc.audioEngine.playEffect(this.startButtonMusic, false);
         }.bind(this));
         
         
@@ -291,24 +310,28 @@ cc.Class({
             chapterData.currentChapter = chapterData.chapter9;
             chapterData.currentYear = this.currentYear;
             cc.director.loadScene('GameScene');
+            cc.audioEngine.playEffect(this.startButtonMusic, false);
         }.bind(this));
         
         this.m10Button.on("click",function(event){
             chapterData.currentChapter = chapterData.chapter10;
             chapterData.currentYear = this.currentYear;
             cc.director.loadScene('GameScene');
+            cc.audioEngine.playEffect(this.startButtonMusic, false);
         }.bind(this));
         
         this.m11Button.on("click",function(event){
             chapterData.currentChapter = chapterData.chapter11;
             chapterData.currentYear = this.currentYear;
             cc.director.loadScene('GameScene');
+            cc.audioEngine.playEffect(this.startButtonMusic, false);
         }.bind(this));
         
         this.m12Button.on("click",function(event){
             chapterData.currentChapter = chapterData.chapter12;
             chapterData.currentYear = this.currentYear;
             cc.director.loadScene('GameScene');
+            cc.audioEngine.playEffect(this.startButtonMusic, false);
         }.bind(this));
         
         
@@ -322,6 +345,7 @@ cc.Class({
                         this.intitButtonStar(this.userdata);
                         this.loadYear();
                     }.bind(this))));
+                    cc.audioEngine.playEffect(this.cutyearMusic, false);
                 }
             }
             if(event.getStartLocation().x < event.getLocation().x)
@@ -333,6 +357,7 @@ cc.Class({
                         this.intitButtonStar(this.userdata);
                         this.loadYear();
                     }.bind(this))));
+                    cc.audioEngine.playEffect(this.cutyearMusic, false);
                 }
             }
         }.bind(this));

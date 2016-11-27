@@ -7229,6 +7229,12 @@
     },
     "yearNode": {
       "__id__": 81
+    },
+    "startButtonMusic": {
+      "__uuid__": "87dc8bbe-3f63-4935-abda-6e93a1372719"
+    },
+    "cutyearMusic": {
+      "__uuid__": "63ef98fa-7b5d-4d39-a1f9-5b48e584dffb"
     }
   },
   {
@@ -7294,7 +7300,7 @@
     "_clip": {
       "__uuid__": "afab8fb2-2a7b-4bea-8bf2-0f41ffa8cab6"
     },
-    "_volume": 0.4,
+    "_volume": 1,
     "_mute": false,
     "_loop": true,
     "playOnLoad": true,

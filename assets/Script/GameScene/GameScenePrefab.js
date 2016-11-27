@@ -36,16 +36,28 @@ cc.Class({
             url: cc.AudioClip,
             default:null
         },
-        soMusic:{
-            url: cc.AudioClip,
+        reFengMusic:{
+            url:cc.AudioClip,
             default:null
         },
-        laMusic:{
-            url: cc.AudioClip,
+        winMusic:{
+            url:cc.AudioClip,
             default:null
         },
-        xiMusic:{
-            url: cc.AudioClip,
+        faidMusic:{
+            url:cc.AudioClip,
+            default:null
+        },
+        lightingMusic:{
+            url:cc.AudioClip,
+            default:null
+        },
+        slowMusic:{
+            url:cc.AudioClip,
+            default:null
+        },
+        timeiceMusic:{
+            url:cc.AudioClip,
             default:null
         },
         bigShuidiMusic:{
@@ -55,6 +67,22 @@ cc.Class({
         bigShuidi:{
             default: null,
             type: cc.SpriteFrame,
+        },
+        lightingSprite:{
+            default:null,
+            type: cc.SpriteFrame,
+        },
+        snowSprite:{
+            default:null,
+            type:cc.SpriteFrame,
+        },
+        timeiceSprite:{
+            default:null,
+            type:cc.SpriteFrame
+        },
+        slowSprite:{
+            default:null,
+            type:cc.SpriteFrame
         },
         canvas: {
             default: null,
@@ -223,8 +251,8 @@ cc.Class({
             return;
         }
         
-        var ramdomNumber =  Math.floor(Math.random() * 1+5);
-        if(ramdomNumber == 1)
+        var ramdomNumber =  Math.floor(Math.random() * 5+1);
+        if(ramdomNumber == 1 && this.spawnCount >= this.needCount / 2 )
         {
             this.addSpecialEffect();
         }
@@ -235,7 +263,7 @@ cc.Class({
         if(cc.random0To1() >= 0.5 && this.bigSpawnCount < this.bigNumberToSpawn && this.spawnCount >= this.needCount / 2 )
         {
             this.bigSpawnCount++;
-            sp.spriteFrame =  this.bigShuidi;
+            sp.spriteFrame = this.bigShuidi;
             this.addBoom(node,true);
         }
         else
@@ -273,6 +301,14 @@ cc.Class({
         cc.audioEngine.preload(this.soMusic);
         cc.audioEngine.preload(this.laMusic);
         cc.audioEngine.preload(this.xiMusic);
+        cc.audioEngine.preload(this.refengMusic);
+        cc.audioEngine.preload(this.winMusic);
+        cc.audioEngine.preload(this.faidMusic);
+        cc.audioEngine.preload(this.lightingMusic);
+        cc.audioEngine.preload(this.slowMusic);
+        cc.audioEngine.preload(this.timeiceMusic);
+        
+        
         
         this.bigNumberToSpawn =  chapterData.currentChapter.bigNumberToSpawn;
         this.numberToSpawn = chapterData.currentChapter.numberToSpawn;
@@ -312,34 +348,43 @@ cc.Class({
         this.chongzou.position = cc.p(-1000,-1000);
         this.initNiver();
         
+        this.lLighting.on(cc.Node.EventType.TOUCH_START,function(event){
+                cc.director.loadScene('GameScene');
+                cc.audioEngine.stopAll();
+            });
+        
+        
+        cc.audioEngine.play(cc.url.raw(chapterData.currentChapter.bgMusic),true,0.5)
+        
         
         this.winReStart.on("click",function(event){
              cc.director.loadScene('GameScene');
+              cc.audioEngine.stopAll();
         });
         
         this.winBack.on("click",function(event){
             cc.director.loadScene('StartScene');
+            cc.audioEngine.stopAll();
         });
         
         this.failReStart.on("click",function(event){
             cc.director.loadScene('StartScene');
+            cc.audioEngine.stopAll();
         });
         
         this.failBack.on("click",function(event){
              cc.director.loadScene('GameScene');
+             cc.audioEngine.stopAll();
         });
         
         
         cc.loader.loadRes(this.bg1Image,cc.SpriteFrame,function(err,spriteFrame){
-                cc.log("err" + err);
                 this.bg1Node.getComponent(cc.Sprite).spriteFrame = spriteFrame
         }.bind(this));
         cc.loader.loadRes(this.bg2Image,cc.SpriteFrame,function(err,spriteFrame){
-                cc.log("err" + err);
                 this.bg2Node.getComponent(cc.Sprite).spriteFrame = spriteFrame
         }.bind(this));
         cc.loader.loadRes(this.bg3Image,cc.SpriteFrame,function(err,spriteFrame){
-                cc.log("err" + err);
                 this.bg3Node.getComponent(cc.Sprite).spriteFrame = spriteFrame
         }.bind(this));
         
@@ -377,25 +422,125 @@ cc.Class({
                     }
                 }
                 this.nengliangtiaoCtrl.progress = 0;
+                cc.audioEngine.playEffect(this.reFengMusic, false);
             }
         },this);
     },
     
     addSpecialEffect:function(){
+        
+        //lSlow
+        //lSnow
+        //lLighting
+        //lTimeice
+        //timeiceSprite
+        //slowSprite
+        
         if(this.lightingNumber > 0 && this.needlightingNumber < this.lightingNumber)
         {
+            var node = new cc.Node('lightingSprite');
+            var sp = node.addComponent(cc.Sprite);
+            
+            sp.spriteFrame = this.lightingSprite;
+            
+            node.parent = this.node;
+            node.position = this.getRandomPosition();
+            node.on(cc.Node.EventType.TOUCH_START,function(event){
+                node.stopAllActions();
+                var animationNode = cc.instantiate(this.lLighting);
+                animationNode.parent = this.node;
+                animationNode.position = node.position;
+                var value = animationNode.getComponent(dragonBones.ArmatureDisplay);
+                value.armature().animation.play("lighting",1);
+                node.destroy();
+                
+                var tempMoveNumber = this.moveNumber;
+                this.moveNumber = this.moveNumber - 1;
+                
+                this.scheduleOnce(function(dt){
+                    this.moveNumber = tempMoveNumber;
+                }.bind(this),3)
+                
+            }.bind(this));
+            
+            var move = cc.moveTo(this.moveNumber, node.position.x, 0);
+            
+            node.runAction(cc.sequence(move,cc.callFunc(function(){
+                node.destroy();
+            }.bind(this))));
+            
             this.needlightingNumber++;
-        }
-        else if(this.snowNumber > 0 && this.needsnowNumber < this.snowNumber )
-        {
-            this.needsnowNumber++;
         }
         else if(this.timeiceNumber > 0 && this.needtimeiceNumber < this.timeiceNumber)
         {
+            var node = new cc.Node('timeiceSprite');
+            var sp = node.addComponent(cc.Sprite);
+            
+            sp.spriteFrame = this.timeiceSprite;
+            
+            node.parent = this.node;
+            node.position = this.getRandomPosition();
+            node.on(cc.Node.EventType.TOUCH_START,function(event){
+                node.stopAllActions();
+                var animationNode = cc.instantiate(this.lTimeice);
+                animationNode.parent = this.node;
+                animationNode.position = node.position;
+                var value = animationNode.getComponent(dragonBones.ArmatureDisplay);
+                value.armature().animation.play("timeice",1);
+                node.destroy();
+                
+                for(var i in this.nodeArray)
+                {
+                    if(cc.isValid(this.nodeArray[i]))
+                    {
+                        this.nodeArray[i].stopAllActions();
+                    }
+                }
+                
+                
+            }.bind(this));
+            
+            var move = cc.moveTo(this.moveNumber, node.position.x, 0);
+            
+            node.runAction(cc.sequence(move,cc.callFunc(function(){
+                node.destroy();
+            }.bind(this))));
+            
             this.needtimeiceNumber++;
         }
         else if(this.slowNumber > 0 && this.needslowNumber < this.slowNumber )
         {
+            var node = new cc.Node('slowSprite');
+            var sp = node.addComponent(cc.Sprite);
+            
+            sp.spriteFrame = this.slowSprite;
+            
+            node.parent = this.node;
+            node.position = this.getRandomPosition();
+            node.on(cc.Node.EventType.TOUCH_START,function(event){
+                node.stopAllActions();
+                var animationNode = cc.instantiate(this.lSlow);
+                animationNode.parent = this.node;
+                animationNode.position = node.position;
+                var value = animationNode.getComponent(dragonBones.ArmatureDisplay);
+                value.armature().animation.play("slow",1);
+                node.destroy();
+                
+                var tempMoveNumber = this.moveNumber;
+                this.moveNumber = this.moveNumber + 1;
+                
+                this.scheduleOnce(function(dt){
+                    this.moveNumber = tempMoveNumber;
+                }.bind(this),3)
+                
+            }.bind(this));
+            
+            var move = cc.moveTo(this.moveNumber, node.position.x, 0);
+            
+            node.runAction(cc.sequence(move,cc.callFunc(function(){
+                node.destroy();
+            }.bind(this))));
+            
             this.needslowNumber++;
         }
         
@@ -506,7 +651,7 @@ cc.Class({
             this.clearCount++;
     },
     playShuidiMusic:function(){
-        var ramdomNumber =  Math.floor(Math.random() * 7+1);
+        var ramdomNumber =  Math.floor(Math.random() * 4+1);
         if(ramdomNumber == 1)
         {
              cc.audioEngine.playEffect(this.doMusic, false);
@@ -522,22 +667,10 @@ cc.Class({
         if(ramdomNumber == 4)
         {
              cc.audioEngine.playEffect(this.faMusic, false);
-        }
-        if(ramdomNumber == 5)
-        {
-             cc.audioEngine.playEffect(this.soMusic, false);
-        }
-        if(ramdomNumber == 6)
-        {
-             cc.audioEngine.playEffect(this.laMusic, false);
-        }
-         if(ramdomNumber == 7)
-        {
-             cc.audioEngine.playEffect(this.xiMusic, false);
         }
     },
     playBigShuidiMusic:function(){
-        var ramdomNumber =  Math.floor(Math.random() * 7+1);
+        var ramdomNumber =  Math.floor(Math.random() * 4+1);
         if(ramdomNumber == 1)
         {
              cc.audioEngine.playEffect(this.doMusic, false);
@@ -553,18 +686,6 @@ cc.Class({
         if(ramdomNumber == 4)
         {
              cc.audioEngine.playEffect(this.faMusic, false);
-        }
-        if(ramdomNumber == 5)
-        {
-             cc.audioEngine.playEffect(this.soMusic, false);
-        }
-        if(ramdomNumber == 6)
-        {
-             cc.audioEngine.playEffect(this.laMusic, false);
-        }
-         if(ramdomNumber == 7)
-        {
-             cc.audioEngine.playEffect(this.xiMusic, false);
         }
     },
     ctrlNiver:function(){
@@ -607,13 +728,34 @@ cc.Class({
             }
             
     },
+    setUserM12:function(udata)
+    {
+        if(this.currentYear == 1)
+        {
+            this.setUserData(udata.Year1.m12)
+            udata.Year2.m1.isEnable = true;
+        }
+        if(this.currentYear == 2)
+        {
+            this.setUserData(udata.Year2.m12)
+            udata.Year3.m1.isEnable = true;
+        }
+        if(this.currentYear == 3)
+        {
+            this.setUserData(udata.Year3.m12)
+        }
+        
+    },
     setUserData:function(uData,nextUData){
+        cc.log("next:" + nextUData);
         if(this.destroyCount == 0)
         {
             uData.isEnable = true;
             uData.star = 3;
             if(nextUData != undefined)
+            {
                 nextUData.isEnable = true;
+            }
             this.winStar1.getComponent(cc.Sprite).enabled = true;
             this.winStar2.getComponent(cc.Sprite).enabled = true;
             this.winStar3.getComponent(cc.Sprite).enabled = true;
@@ -657,6 +799,7 @@ cc.Class({
                     this.failBoomLable.getComponent(cc.Label).string = this.clearCount;
                 }
             }, this);
+            cc.audioEngine.playEffect(this.faidMusic, false);
         }
     },
 
@@ -721,7 +864,7 @@ cc.Class({
                         break;
                 case 11: this.setUserData(tempYear.m11,tempYear.m12);
                         break;
-                case 12: this.setUserData(tempYear.m12); break
+                case 12: this.setUserM12(userData); break
             }
             cc.sys.localStorage.setItem('UserData', JSON.stringify(userData));
             this.isWin = true;
@@ -742,6 +885,7 @@ cc.Class({
             this.winBoomLable.getComponent(cc.Label).string = this.clearCount;
             this.winLostLable.getComponent(cc.Label).string = this.destroyCount;
             this.winBg.position = cc.p(375,665);
+            cc.audioEngine.playEffect(this.winMusic, false);
         }  
     },
     
